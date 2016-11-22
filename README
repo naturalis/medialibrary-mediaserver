@@ -1,0 +1,7 @@
+VERSION HISTORY
+===========================================================================
+
+Version 1.01
+o  Path parameters in URL are now url-decoded before being passed on to
+   controllers
+o  Added this README file

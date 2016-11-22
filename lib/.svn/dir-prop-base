@@ -1,0 +1,9 @@
+K 13
+svn:externals
+V 431
+svn://dev2.etibioinformatics.nl/NBCMediaLib/nl.naturalis.medialib.util/trunk nl.naturalis.medialib.util
+svn://dev2.etibioinformatics.nl/NBCMediaLib/nl.naturalis.medialib.server/trunk nl.naturalis.medialib.mvc
+svn://dev2.etibioinformatics.nl/NBCMediaLib/nl.naturalis.medialib.publisher/trunk nl.naturalis.medialib.publisher
+svn://dev2.etibioinformatics.nl/NBCMediaLib/nl.naturalis.medialib.server/trunk nl.naturalis.medialib.server
+
+END
