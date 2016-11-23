@@ -9,7 +9,7 @@ use nl\naturalis\medialib\util\context\Context;
 use Monolog\Logger;
 
 class MediaServerDAO {
-	
+
 	/**
      * @var Logger
      */
@@ -43,7 +43,7 @@ class MediaServerDAO {
 
 	public function getMedia($regno)
 	{
-		$sql = 'SELECT www_dir,www_file,www_ok FROM media WHERE regno=?';
+		$sql = 'SELECT www_dir,www_file,www_ok,master_dir,master_file FROM media WHERE regno=?';
 		$stmt = $this->_pdo->prepare($sql);
 		$stmt->bindValue(1, $regno);
 		$this->_executeStatement($stmt);
@@ -56,19 +56,19 @@ class MediaServerDAO {
 	{
 		if(!isset($params) || !is_array($params) || count($params) === 0) {
 			$params = self::_getMediaSearchDefaultCriteria();
-		}		
+		}
 		if(isset($params['prevPage'])) {
 			$params['page'] = max(--$params['page'], 0);
 		}
 		else if(isset($params['nextPage'])) {
 			++$params['page'];
-		}		
+		}
 		$sql = 'SELECT * FROM media ';
-		$sql .= self::_getMediaSearchWhereClause($params);		
+		$sql .= self::_getMediaSearchWhereClause($params);
 		$from = (20 * (int) $params['page']);
-		$sql .= " LIMIT $from, 20";		
+		$sql .= " LIMIT $from, 20";
 		$stmt = $this->_pdo->prepare($sql);
-		self::_bindMediaSearchParams($stmt, $params);		
+		self::_bindMediaSearchParams($stmt, $params);
 		$this->_executeStatement($stmt);
 		return $stmt->fetchAll(PDO::FETCH_OBJ);
 	}
@@ -78,11 +78,11 @@ class MediaServerDAO {
 	{
 		if(!isset($params) || !is_array($params) || count($params) === 0) {
 			$params = self::_getMediaSearchDefaultCriteria();
-		}		
+		}
 		$sql = 'SELECT count(*) FROM media ';
-		$sql .= self::_getMediaSearchWhereClause($params);		
+		$sql .= self::_getMediaSearchWhereClause($params);
 		$stmt = $this->_pdo->prepare($sql);
-		self::_bindMediaSearchParams($stmt, $params);		
+		self::_bindMediaSearchParams($stmt, $params);
 		$this->_executeStatement($stmt);
 		return $stmt->fetchColumn();
 	}
