@@ -9,11 +9,11 @@ use nl\naturalis\medialib\util\FileUtil;
 use Monolog\Logger;
 
 
-/** 
+/**
  * The FileController is responsible for serving media based on their
  * registration number, which, by design, is equal to their file name
  * minus the file extension.
- * 
+ *
  * @author ayco_holleman
  */
 class FileController extends AbstractController {
@@ -22,7 +22,8 @@ class FileController extends AbstractController {
 	const FORMAT_SMALL = 'small';
 	const FORMAT_MEDIUM = 'medium';
 	const FORMAT_LARGE = 'large';
-	
+	const FORMAT_MASTER = 'master';
+
 	public function isSingleActionController()
 	{
 		return true;
@@ -36,7 +37,7 @@ class FileController extends AbstractController {
 			throw new Exception("Missing parameter: " . self::REGNO_PARAM);
 		}
 		$format = $this->_dispatcher->getParam(self::FORMAT_PARAM, self::FORMAT_MEDIUM);
-		
+
 		$media = $this->_dao->getMedia($regno);
 		if($media === false) {
 			throw new Exception(sprintf('No media found for %s "%s"', self::REGNO_PARAM, $regno));
@@ -44,14 +45,14 @@ class FileController extends AbstractController {
 		if((int) $media->www_ok === 0) {
 			throw new Exception('Requested resource not ready to be served yet');
 		}
-		
+
 		$path = $this->_getLocationOnServer($media, $format);
 		if(!is_file($path)) {
 			$this->_logger->addError($_SERVER['REQUEST_URI'] . " -  resource not found at expected location: $path");
 			header('HTTP/1.0 404 Not Found');
 			exit();
 		}
-		
+
 		$this->_logger->addDebug("Serving \"$path\"");
 		if($this->_isImage($path)) {
 			$this->_serveImage($path);
@@ -91,7 +92,11 @@ class FileController extends AbstractController {
 	private function _getLocationOnServer($media, $format)
 	{
 		if($this->_isImage($media->www_file)) {
-			$location = "{$media->www_dir}/{$format}/{$media->www_file}";
+			if ($format == FORMAT_MASTER ) {
+					$location = "{$media->www_dir}/{$format}/{$media->www_file}";
+			}else {
+					$location = "{$media->www_dir}/{$format}/{$media->www_file}";
+			}
 		}
 		else {
 			$location = "{$media->www_dir}/{$media->www_file}";
