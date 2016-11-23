@@ -1,0 +1,20 @@
+php_value session.auto_start 0
+php_flag magic_quotes_gpc off
+
+RewriteEngine On
+
+RewriteBase /
+
+RewriteCond %{REQUEST_URI} ^(.*)/process/(.*)$ [NC]
+RewriteRule ^.*$ 403.php [L]
+
+
+
+RewriteCond %{REQUEST_FILENAME} \.(js|ico|gif|jpg|jpeg|png|css|pdf|xml|html)$ [OR]
+RewriteCond %{REQUEST_FILENAME} favicon.ico$ [OR]
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
+

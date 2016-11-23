@@ -1,5 +1,4 @@
 <?php
-
 date_default_timezone_set('Europe/Amsterdam');
 set_include_path('.');
 define('APPLICATION_PATH', __DIR__);
