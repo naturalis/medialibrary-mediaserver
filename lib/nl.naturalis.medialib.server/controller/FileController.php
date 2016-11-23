@@ -93,7 +93,7 @@ class FileController extends AbstractController {
 	{
 		if($this->_isImage($media->www_file)) {
 			if ($format == self::FORMAT_MASTER ) {
-					$location = "{$media->www_dir}/large/{$media->www_file}";
+					$location = "{$media->master_dir}/{$media->www_file}";
 			}else {
 					$location = "{$media->www_dir}/{$format}/{$media->www_file}";
 			}
