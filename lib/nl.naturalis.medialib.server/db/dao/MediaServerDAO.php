@@ -43,7 +43,7 @@ class MediaServerDAO {
 
 	public function getMedia($regno)
 	{
-		$sql = 'SELECT www_dir,www_file,www_ok,master_dir,master_file FROM media WHERE regno=?';
+		$sql = 'SELECT www_dir,www_file,www_ok,master_file FROM media WHERE regno=?';
 		$stmt = $this->_pdo->prepare($sql);
 		$stmt->bindValue(1, $regno);
 		$this->_executeStatement($stmt);
