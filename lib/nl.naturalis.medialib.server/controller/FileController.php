@@ -92,8 +92,8 @@ class FileController extends AbstractController {
 	private function _getLocationOnServer($media, $format)
 	{
 		if($this->_isImage($media->www_file)) {
-			if ($format == FORMAT_MASTER ) {
-					$location = "{$media->www_dir}/{$format}/{$media->www_file}";
+			if ($format == self::FORMAT_MASTER ) {
+					$location = "{$media->www_dir}/large/{$media->www_file}";
 			}else {
 					$location = "{$media->www_dir}/{$format}/{$media->www_file}";
 			}
