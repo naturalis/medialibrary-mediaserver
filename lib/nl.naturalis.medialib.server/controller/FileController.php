@@ -54,7 +54,10 @@ class FileController extends AbstractController {
 		}
 
 		$this->_logger->addDebug("Serving \"$path\"");
-		if($this->_isImage($path)) {
+		if ($format == self::FORMAT_MASTER) {
+			$this->_serveDownload($path)
+		}
+		elseif($this->_isImage($path)) {
 			$this->_serveImage($path);
 		}
 		else {
@@ -85,6 +88,14 @@ class FileController extends AbstractController {
 			$errInfo = error_get_last();
 			throw new Exception($errInfo['message']);
 		}
+		exit();
+	}
+
+	private function _serveDownload($path)
+	{
+		header("X-Sendfile: $path");
+		header("Content-type: application/octet-stream");
+		header('Content-Disposition: attachment; filename="' . basename($path) . '"');
 		exit();
 	}
 
