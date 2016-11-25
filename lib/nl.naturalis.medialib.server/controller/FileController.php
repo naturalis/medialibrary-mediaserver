@@ -55,7 +55,7 @@ class FileController extends AbstractController {
 
 		$this->_logger->addDebug("Serving \"$path\"");
 		if ($format == self::FORMAT_MASTER) {
-			$this->_serveDownload($path)
+			$this->_serveDownload($path);
 		}
 		elseif($this->_isImage($path)) {
 			$this->_serveImage($path);
