@@ -1,6 +1,9 @@
 php_value session.auto_start 0
 php_flag magic_quotes_gpc off
 
+XSendFile on
+XSendFilePath /data/masters
+
 RewriteEngine On
 
 RewriteBase /
