@@ -83,7 +83,7 @@ class FileController extends AbstractController {
 	{
 		$contentType = $this->_getContentType($path);
 		if ($contentType == 'video/mp4') {
-			$this->_serveMp4();
+			$this->_serveMp4($path);
 		}
 		header('Content-Type: ' . $contentType);
 		header('Content-Length: ' . filesize($path));
