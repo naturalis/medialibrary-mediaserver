@@ -161,7 +161,7 @@ function setDate(field,date) {
 			<tr>
 				<td style="vertical-align: top;">Status</td>
 				<td>
-					<input type="checkbox" id="backupOk" name="backupOk" <?php echo isset($_POST['backupOk'])  ? "checked" : ""; ?> />&nbsp;<label for="backupOk">B&amp;G backup onvoltooid of mislukt</label><br/>
+					<input type="checkbox" id="backupOk" name="backupOk" <?php echo isset($_POST['backupOk'])  ? "checked" : ""; ?> />&nbsp;<label for="backupOk">Amazon backup onvoltooid of mislukt</label><br/>
 					<input type="checkbox" id="wwwOk" name="wwwOk" <?php echo isset($_POST['wwwOk'])  ? "checked" : ""; ?> />&nbsp;<label for="wwwOk">Afgeleiden maken onvoltooid of mislukt</label>
 				</td>
 			</tr>
@@ -189,7 +189,7 @@ function setDate(field,date) {
 				<th>Thumbnail</th>
 				<th>Producent</th>
 				<th>Verwerkingsdatum</th>
-				<th>Naar B&amp;G</th>
+				<th>Naar Amazon</th>
 				<th>Naar MediaLib</th>
 			</tr>
 		</thead>
