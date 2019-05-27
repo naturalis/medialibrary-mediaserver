@@ -68,13 +68,13 @@ class FileController extends AbstractController {
 
 	private function _serveImage($path)
 	{
-		$img = @imagecreatefromjpeg($path);
+		$img = @file_get_contents($path);
 		if($img === false) {
 			$errInfo = error_get_last();
 			throw new Exception($errInfo['message']);
 		}
 		header('Content-Type:image/jpeg');
-		imagejpeg($img);
+		echo $img;
 		exit();
 	}
 
