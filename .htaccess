@@ -18,5 +18,7 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 RewriteRule ^.*$ index.php [NC,L]
 
-
-RedirectMatch 404 /\.git
+<Files ~ "\.ini$">
+  Order allow,deny
+  Deny from all
+</Files>
